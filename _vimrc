@@ -16,19 +16,43 @@ set encoding=utf-8
 set completeopt=longest,menu
 set fileencodings=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936,utf-16,big5,euc-jp,latin1
 
-" color
+if &t_Co == 256
+colorscheme molokai
 let g:molokai_original = 1
 let g:rehash256 = 1
+endif
+
+"let vim_go = 1
+if exists("vim_go")
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
-colorscheme molokai
+endif
+
+"let vim_youcompleteme = 1
+if exists("vim_youcompleteme")
+let g:ycm_global_ycm_extra_conf = '~/.vim/ycm/.ycm_extra_conf.py'
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_cache_omnifunc = 1
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 0
+let g:ycm_key_invoke_completion = '<C-\>'
+let g:ycm_semantic_triggers = {}
+let g:ycm_semantic_triggers.c = ['->', '.', ' ', '(', '[', '&']
+
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+endif
+
+imap <C-O> <Esc>:update<CR>
+nmap <F7> :update<CR>:!make<CR>
 
 " vundle plugin
 filetype off
 set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'fatih/vim-go'
+"Plugin 'fatih/vim-go'
 call vundle#end()
 filetype plugin indent on
