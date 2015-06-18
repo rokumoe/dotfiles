@@ -45,8 +45,21 @@ let g:ycm_semantic_triggers.c = ['->', '.', ' ', '(', '[', '&']
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 endif
 
-imap <C-O> <Esc>:update<CR>
+func Hguard()
+	let ext = expand('%:e')
+	if ext != 'h' && ext != 'hpp'
+		return
+	endif
+	let guard = '_' . toupper(substitute(expand('%:t'), '\W', '_', 'g')) . '_'
+	call append(0, '#ifndef ' . guard)
+	call append(1, '#define ' . guard)
+	call append(line('$'), '#endif /* !' . guard . ' */')
+	call append(line('$'), '')
+	return 1
+endfunc
+
 nmap <F7> :update<CR>:!make<CR>
+map <C-K><C-G> <Esc>:call Hguard()<CR>
 
 " vundle plugin
 filetype off
