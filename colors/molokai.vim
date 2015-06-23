@@ -1,1 +1,0 @@
-/home/vizee/.vim/git/molokai/colors/molokai.vim
