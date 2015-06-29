@@ -29,7 +29,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 endif
 
-"let vim_youcompleteme = 1
+let vim_youcompleteme = 1
 if exists("vim_youcompleteme")
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm/.ycm_extra_conf.py'
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -58,7 +58,17 @@ func Hguard()
 	return 1
 endfunc
 
-nmap <F7> :update<CR>:!make<CR>
+func BuildSource()
+	exec 'w'
+	let ext = expand('%:e')
+	if ext == 'go'
+		go build
+	else
+		exec '!make'
+	endif
+endfunc
+
+nmap <F7> :call BuildSource()<CR>
 map <C-K><C-G> <Esc>:call Hguard()<CR>
 
 " vundle plugin
