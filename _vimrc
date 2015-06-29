@@ -62,7 +62,7 @@ func BuildSource()
 	exec 'w'
 	let ext = expand('%:e')
 	if ext == 'go'
-		go build
+		exec '!go build'
 	else
 		exec '!make'
 	endif
