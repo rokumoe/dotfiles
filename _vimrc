@@ -22,7 +22,7 @@ let g:molokai_original = 1
 let g:rehash256 = 1
 endif
 
-"let vim_go = 1
+let vim_go = 1
 if exists("vim_go")
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -66,6 +66,10 @@ filetype off
 set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-"Plugin 'fatih/vim-go'
+
+if exists("vim_go")
+Plugin 'fatih/vim-go'
+endif
+
 call vundle#end()
 filetype plugin indent on
