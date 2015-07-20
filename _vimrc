@@ -68,7 +68,21 @@ func BuildSource()
 	endif
 endfunc
 
+func CompileFile()
+	exec 'w'
+	let ext = expand('%:e')
+	let file = expand('%')
+	if ext == 'c'
+		exec '!gcc -c -ansi ' . file
+	elseif ext == 'cpp'
+		exec '!gcc -c -std=c++11 ' . file
+	else
+		echo 'unknown filetype'
+	endif
+endfunc
+
 nmap <F7> :call BuildSource()<CR>
+nmap <C-B> :call CompileFile()<CR>
 map <C-K><C-G> <Esc>:call Hguard()<CR>
 
 " vundle plugin
