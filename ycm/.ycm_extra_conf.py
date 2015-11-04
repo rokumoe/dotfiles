@@ -41,34 +41,25 @@ flags = [
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
-<<<<<<< HEAD
-#'-DNDEBUG',
-#'-D_POSIX_C_SOURCE',
-=======
 '-DNDEBUG',
 '-D_POSIX_C_SOURCE',
 '-D_LINUX',
->>>>>>> 5d86df583aaed5247635fb64e12a69e4ccb81142
 # THIS IS IMPORTANT! Without a "-std=<something>" flag, clang won't know which
 # language to use when compiling headers. So it will guess. Badly. So C++
 # headers will be compiled as C headers. You don't want that so ALWAYS specify
 # a "-std=<something>".
 # For a C project, you would set this to something like 'c99' instead of
 # 'c++11'.
-<<<<<<< HEAD
-'-std=c++11',
-#'-ansi',
-=======
 #'-std=c11',
 #'-std=c++11',
 '-ansi',
->>>>>>> 5d86df583aaed5247635fb64e12a69e4ccb81142
 # ...and the same thing goes for the magic -x option which specifies the
 # language that the files to be compiled are written in. This is mostly
 # relevant for c++ headers.
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x',
-'c++',
+'c',
+#'c++',
 '-isystem',
 '/usr/lib/gcc/x86_64-linux-gnu/4.8/include',
 '-isystem',
