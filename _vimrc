@@ -11,7 +11,7 @@ set noswapfile
 set confirm
 set mouse=a
 set selection=exclusive
-set guifont=Source\ Code\ Pro:h14
+set guifont=Dejavu\ Sans\ Mono:h14
 set encoding=utf-8
 set completeopt=longest,menu
 set fileencodings=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936,utf-16,big5,euc-jp,latin1
@@ -24,9 +24,13 @@ endif
 
 let vim_go = 1
 if exists("vim_go")
+let g:go_bin_path = expand("~/go/bin")
+let g:go_highlight_build_contraints = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
 endif
 
 let vim_youcompleteme = 1
@@ -75,6 +79,7 @@ func BuildSource()
 	endif
 endfunc
 
+
 func CompileFile()
 	exec 'w'
 	let ext = expand('%:e')
@@ -89,9 +94,13 @@ func CompileFile()
 endfunc
 
 nmap <F7> :call BuildSource()<CR>
-nmap <C-B> :call CompileFile()<CR>
+nmap <C-F7> :call CompileFile()<CR>
 map <C-K><C-G> <Esc>:call Hguard()<CR>
 map <C-K><C-N> :NERDTreeToggle<CR>
+map <C-B><C-N> <Esc>:bn<CR>
+map <C-B><C-A> <Esc>:bad 
+map <C-B><C-P> <Esc>:bp<CR>
+map <C-B><C-D> <Esc>:bd<CR>
 
 " vundle plugin
 filetype off
