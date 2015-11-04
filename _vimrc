@@ -4,7 +4,7 @@ set autoindent
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
-set noexpandtab
+set expandtab
 syntax on
 set nobackup
 set noswapfile
@@ -45,6 +45,11 @@ let g:ycm_semantic_triggers.c = ['->', '.', ' ', '(', '[', '&']
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 endif
 
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+
 func Hguard()
 	let ext = expand('%:e')
 	if ext != 'h' && ext != 'hpp'
@@ -63,8 +68,10 @@ func BuildSource()
 	let ext = expand('%:e')
 	if ext == 'go'
 		exec '!go build'
-	else
+    elseif filereadable('Makefile') || filereadable('makefile') || filereadable('MAKEFILE')
 		exec '!make'
+    else
+        echo 'no buildable target'
 	endif
 endfunc
 
@@ -73,9 +80,9 @@ func CompileFile()
 	let ext = expand('%:e')
 	let file = expand('%')
 	if ext == 'c'
-		exec '!gcc -c -ansi ' . file
+		exec '!gcc -c -Wall -std=c99 ' . file
 	elseif ext == 'cpp'
-		exec '!gcc -c -std=c++11 ' . file
+		exec '!gcc -c -Wall -std=c++11 ' . file
 	else
 		echo 'unknown filetype'
 	endif
@@ -84,12 +91,14 @@ endfunc
 nmap <F7> :call BuildSource()<CR>
 nmap <C-B> :call CompileFile()<CR>
 map <C-K><C-G> <Esc>:call Hguard()<CR>
+map <C-K><C-N> :NERDTreeToggle<CR>
 
 " vundle plugin
 filetype off
 set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
 
 if exists("vim_go")
 Plugin 'fatih/vim-go'
