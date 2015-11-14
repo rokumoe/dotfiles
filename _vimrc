@@ -9,7 +9,7 @@ syntax on
 set nobackup
 set noswapfile
 set confirm
-set mouse=a
+set mouse=v
 set selection=exclusive
 set guifont=Dejavu\ Sans\ Mono:h14
 set encoding=utf-8
