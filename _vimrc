@@ -49,10 +49,14 @@ let g:ycm_semantic_triggers.c = ['->', '.', ' ', '(', '[', '&']
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 endif
 
+let nerdtree = 1
+if exists('nerdtree')
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+endif
 
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 func Hguard()
 	let ext = expand('%:e')
