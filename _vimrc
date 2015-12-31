@@ -9,7 +9,7 @@ syntax on
 set nobackup
 set noswapfile
 set confirm
-set mouse=v
+set mouse=a
 set selection=exclusive
 set guifont=Dejavu\ Sans\ Mono:h14
 set encoding=utf-8
@@ -22,7 +22,7 @@ let g:molokai_original = 1
 let g:rehash256 = 1
 endif
 
-let vim_go = 1
+" let vim_go = 1
 if exists("vim_go")
 let g:go_bin_path = expand("~/go/bin")
 let g:go_highlight_build_contraints = 1
@@ -33,7 +33,7 @@ let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 endif
 
-let vim_youcompleteme = 1
+" let vim_youcompleteme = 1
 if exists("vim_youcompleteme")
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm/.ycm_extra_conf.py'
 let g:ycm_collect_identifiers_from_tags_files = 1
