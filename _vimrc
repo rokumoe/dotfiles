@@ -1,3 +1,4 @@
+set nocompatible
 set smartindent
 set cindent
 set autoindent
@@ -20,6 +21,11 @@ if &t_Co == 256
 colorscheme molokai
 let g:molokai_original = 1
 let g:rehash256 = 1
+endif
+
+" let vim_rust = 1
+if exists("vim_rust")
+let g:rustfmt_autosave = 1
 endif
 
 " let vim_go = 1
@@ -112,6 +118,11 @@ set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
+
+if exists("vim_rust")
+Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
+endif
 
 if exists("vim_go")
 Plugin 'fatih/vim-go'

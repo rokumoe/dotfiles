@@ -7,3 +7,4 @@ git submodule update
 ln -sf $curdir/_vimrc ~/.vimrc
 mkdir -p ~/.vim/colors/
 ln -sf $curdir/git/molokai/colors/molokai.vim ~/.vim/colors/molokai.vim
+vim +PluginInstall +qall
