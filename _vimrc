@@ -10,6 +10,7 @@ syntax on
 set nobackup
 set noswapfile
 set confirm
+set backspace=indent,eol,start
 set mouse=a
 set selection=exclusive
 set guifont=Dejavu\ Sans\ Mono:h14
@@ -25,22 +26,24 @@ endif
 
 " let vim_rust = 1
 if exists("vim_rust")
-let g:rustfmt_autosave = 1
+let g:racer_cmd = expand("~/.cargo/bin/racer")
+let $RUST_SRC_PATH = expand("~/local/rustc-1.8.0/src")
 endif
 
 " let vim_go = 1
 if exists("vim_go")
-let g:go_bin_path = expand("~/go/bin")
 let g:go_highlight_build_contraints = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_fmt_command = "goimports"
+let g:go_bin_path = "/home/vizee/go/bin"
 let g:go_fmt_fail_silently = 1
 endif
 
-" let vim_youcompleteme = 1
-if exists("vim_youcompleteme")
+" let vim_ycm = 1
+" let vim_ycmcfg = 1
+if exists("vim_ycmcfg") || exists("vim_ycm")
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm/.ycm_extra_conf.py'
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_min_num_of_chars_for_completion = 2
@@ -126,6 +129,10 @@ endif
 
 if exists("vim_go")
 Plugin 'fatih/vim-go'
+endif
+
+if exists("vim_ycm")
+Plugin 'Valloric/YouCompleteMe'
 endif
 
 call vundle#end()
