@@ -55,7 +55,7 @@ let g:ycm_key_invoke_completion = '<C-\>'
 let g:ycm_semantic_triggers = {}
 let g:ycm_semantic_triggers.c = ['->', '.', ' ', '(', '[', '&']
 
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
 endif
 
 let nerdtree = 1
@@ -63,6 +63,41 @@ if exists('nerdtree')
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+map <C-K><C-N> :NERDTreeToggle<CR>
+endif
+
+" let tagbar = 1
+if exists('tagbar')
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+    \ }
+let g:tagbar_width = 26
+
+map <C-K><C-T> :TagbarToggle<CR>
 endif
 
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
@@ -109,7 +144,6 @@ endfunc
 nmap <F7> :call BuildSource()<CR>
 nmap <C-F7> :call CompileFile()<CR>
 map <C-K><C-G> <Esc>:call Hguard()<CR>
-map <C-K><C-N> :NERDTreeToggle<CR>
 map <C-B><C-N> <Esc>:bn<CR>
 map <C-B><C-A> <Esc>:bad 
 map <C-B><C-P> <Esc>:bp<CR>
@@ -121,6 +155,10 @@ set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
+
+if exists('tagbar')
+Plugin 'majutsushi/tagbar'
+endif
 
 if exists("vim_rust")
 Plugin 'rust-lang/rust.vim'
