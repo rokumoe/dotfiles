@@ -17,6 +17,7 @@ set guifont=Dejavu\ Sans\ Mono:h14
 set encoding=utf-8
 set completeopt=longest,menu
 set fileencodings=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936,utf-16,big5,euc-jp,latin1
+set ruler
 
 if &t_Co == 256
 colorscheme molokai
