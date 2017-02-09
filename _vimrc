@@ -11,6 +11,7 @@ set nobackup
 set noswapfile
 set confirm
 set backspace=indent,eol,start
+set laststatus=2
 set mouse=a
 set selection=exclusive
 set guifont=Dejavu\ Sans\ Mono:h14
@@ -19,26 +20,23 @@ set completeopt=longest,menu
 set fileencodings=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936,utf-16,big5,euc-jp,latin1
 set ruler
 
-if &t_Co == 256
-colorscheme molokai
-let g:molokai_original = 1
-let g:rehash256 = 1
-endif
-
 " let vim_rust = 1
 if exists("vim_rust")
 let g:racer_cmd = expand("~/.cargo/bin/racer")
-let $RUST_SRC_PATH = expand("~/local/rustc-1.8.0/src")
+let g:rustfmt_autosave = 1
 endif
 
 " let vim_go = 1
 if exists("vim_go")
-let g:go_highlight_build_contraints = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
 let g:go_fmt_command = "goimports"
-let g:go_bin_path = "/home/vizee/go/bin"
+let g:go_bin_path = expand("$GOPATH/bin")
 let g:go_fmt_fail_silently = 1
 endif
 
@@ -62,9 +60,17 @@ endif
 let nerdtree = 1
 if exists('nerdtree')
 let g:NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
 map <C-K><C-N> :NERDTreeToggle<CR>
+endif
+
+let vim_airline = 1
+if exists('vim_airline')
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_theme='term'
 endif
 
 " let tagbar = 1
@@ -100,8 +106,6 @@ let g:tagbar_width = 26
 
 map <C-K><C-T> :TagbarToggle<CR>
 endif
-
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 func Hguard()
 	let ext = expand('%:e')
@@ -174,5 +178,29 @@ if exists("vim_ycm")
 Plugin 'Valloric/YouCompleteMe'
 endif
 
+if exists("vim_airline")
+Plugin 'vim-airline/vim-airline'
+endif
+
+Plugin 'tyrannicaltoucan/vim-quantum'
+" Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'NLKNguyen/papercolor-theme'
+
 call vundle#end()
 filetype plugin indent on
+
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+
+let g:airline_theme='quantum'
+
+if &t_Co == 256
+let g:molokai_original = 1
+let g:rehash256 = 1
+colorscheme molokai
+" set background=dark
+" let g:quantum_black = 1
+" let g:quantum_italics = 0
+" colorscheme quantum
+" colorscheme PaperColor
+endif
+
