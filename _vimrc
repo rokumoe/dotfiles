@@ -19,6 +19,8 @@ set encoding=utf-8
 set completeopt=longest,menu
 set fileencodings=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936,utf-16,big5,euc-jp,latin1
 set ruler
+set cursorline
+set cursorcolumn
 
 " let vim_rust = 1
 if exists("vim_rust")
@@ -108,16 +110,16 @@ map <C-K><C-T> :TagbarToggle<CR>
 endif
 
 func Hguard()
-	let ext = expand('%:e')
-	if ext != 'h' && ext != 'hpp'
-		return
-	endif
-	let guard = '_' . toupper(substitute(expand('%:t'), '\W', '_', 'g')) . '_'
-	call append(0, '#ifndef ' . guard)
-	call append(1, '#define ' . guard)
-	call append(line('$'), '#endif /* !' . guard . ' */')
-	call append(line('$'), '')
-	return 1
+        let ext = expand('%:e')
+        if ext == 'h' || ext == 'hpp'
+            let guard = '_' . toupper(substitute(expand('%:t'), '\W', '_', 'g')) . '_'
+            call append(0, '#ifndef ' . guard)
+            call append(1, '#define ' . guard)
+            call append(line('$'), '#endif /* !' . guard . ' */')
+            call append(line('$'), '')
+    elseif ext == 'c' || ext == 'cpp'
+        call append(0, '#include "' . expand('%:t:r') . '.h"')
+        endif
 endfunc
 
 func BuildSource()
