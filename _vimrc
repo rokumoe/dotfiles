@@ -184,7 +184,7 @@ if exists("vim_airline")
 Plugin 'vim-airline/vim-airline'
 endif
 
-Plugin 'tyrannicaltoucan/vim-quantum'
+Plugin 'gomisc/vim-quantum'
 " Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'NLKNguyen/papercolor-theme'
 
@@ -198,11 +198,11 @@ let g:airline_theme='quantum'
 if &t_Co == 256
 let g:molokai_original = 1
 let g:rehash256 = 1
-colorscheme molokai
-" set background=dark
-" let g:quantum_black = 1
+" colorscheme molokai
+set background=dark
+let g:quantum_black = 1
 " let g:quantum_italics = 0
-" colorscheme quantum
+colorscheme quantum
 " colorscheme PaperColor
 endif
 
