@@ -38,12 +38,14 @@ flags = [
 '-Wall',
 '-Wextra',
 '-Werror',
+'-Wcast-align',
+'-Wno-unused',
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
-'-DNDEBUG',
-'-D_POSIX_C_SOURCE',
-'-D_LINUX',
+#'-DNDEBUG',
+#'-D_POSIX_C_SOURCE',
+#'-D_LINUX',
 # THIS IS IMPORTANT! Without a "-std=<something>" flag, clang won't know which
 # language to use when compiling headers. So it will guess. Badly. So C++
 # headers will be compiled as C headers. You don't want that so ALWAYS specify
@@ -51,25 +53,27 @@ flags = [
 # For a C project, you would set this to something like 'c99' instead of
 # 'c++11'.
 #'-std=c11',
-#'-std=c++11',
-'-ansi',
+'-std=c++14',
+#'-ansi',
 # ...and the same thing goes for the magic -x option which specifies the
 # language that the files to be compiled are written in. This is mostly
 # relevant for c++ headers.
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x',
-'c',
-#'c++',
+#'c',
+'c++',
 '-isystem',
-'/usr/lib/gcc/x86_64-linux-gnu/4.8/include',
+'/usr/lib/gcc/x86_64-linux-gnu/5.4.0/include',
 '-isystem',
 '/usr/local/include',
 '-isystem',
-'/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed',
+'/usr/lib/gcc/x86_64-linux-gnu/5.4.0/include-fixed',
 '-isystem',
 '/usr/include/x86_64-linux-gnu',
 '-isystem',
-'/usr/include'
+'/usr/include',
+'-isystem',
+'/usr/include/c++/5.4.0'
 ]
 
 
