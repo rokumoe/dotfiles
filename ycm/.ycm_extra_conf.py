@@ -38,11 +38,12 @@ flags = [
 '-Wall',
 '-Wextra',
 '-Werror',
-'-Wcast-align',
+#'-Wcast-align',
 '-Wno-unused',
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
+'-D_GNU_SOURCE',
 #'-DNDEBUG',
 #'-D_POSIX_C_SOURCE',
 #'-D_LINUX',
@@ -53,27 +54,28 @@ flags = [
 # For a C project, you would set this to something like 'c99' instead of
 # 'c++11'.
 #'-std=c11',
-'-std=c++14',
+#'-std=c++14',
+'-std=c99',
 #'-ansi',
 # ...and the same thing goes for the magic -x option which specifies the
 # language that the files to be compiled are written in. This is mostly
 # relevant for c++ headers.
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x',
-#'c',
-'c++',
-'-isystem',
-'/usr/lib/gcc/x86_64-linux-gnu/5.4.0/include',
-'-isystem',
-'/usr/local/include',
-'-isystem',
-'/usr/lib/gcc/x86_64-linux-gnu/5.4.0/include-fixed',
-'-isystem',
-'/usr/include/x86_64-linux-gnu',
+'c',
+#'c++',
 '-isystem',
 '/usr/include',
 '-isystem',
-'/usr/include/c++/5.4.0'
+'/usr/local/include',
+#'-isystem',
+#'/usr/include/c++/5.4.0',
+'-isystem',
+'/usr/include/x86_64-linux-gnu',
+'-isystem',
+'/usr/lib/gcc/x86_64-linux-gnu/5.4.0/include',
+'-isystem',
+'/usr/lib/gcc/x86_64-linux-gnu/5.4.0/include-fixed'
 ]
 
 
