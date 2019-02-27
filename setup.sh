@@ -2,9 +2,7 @@
 
 cd `dirname $0`
 curdir=`pwd`
-git submodule init
-git submodule update
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ln -sf $curdir/_vimrc ~/.vimrc
-mkdir -p ~/.vim/colors/
-ln -sf $curdir/git/molokai/colors/molokai.vim ~/.vim/colors/molokai.vim
-vim +PluginInstall +qall
+vim +PlugInstall +qall
