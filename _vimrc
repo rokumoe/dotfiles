@@ -1,7 +1,3 @@
-"let uselang = 'go'
-let uselang = 'rs'
-"let uselang = 'none'
-
 set nocompatible
 set smartindent
 set cindent
@@ -35,7 +31,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'tyrannicaltoucan/vim-quantum'
 
-if uselang == 'rs'
 Plug 'rust-lang/rust.vim'
 
 Plug 'prabirshrestha/async.vim'
@@ -45,12 +40,6 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 "Plug 'ervandew/supertab'
 
-elseif uselang == 'go'
-
-Plug 'fatih/vim-go'
-Plug 'Valloric/YouCompleteMe'
-
-endif
 call plug#end()
 filetype plugin indent on
 
@@ -89,8 +78,6 @@ map <C-B><C-A> <Esc>:bad
 map <C-B><C-P> <Esc>:bp<CR>
 map <C-B><C-D> <Esc>:bd<CR>
 
-if uselang == 'rs'
-
 nmap <F2> :LspRename<CR>
 nnoremap <leader>gd :LspDefinition<CR>
 
@@ -98,6 +85,7 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 
+let g:rustfmt_autosave = 1
 let g:lsp_diagnostics_enabled = 0
 let g:lsp_highlights_enabled = 0
 
@@ -116,42 +104,6 @@ au User lsp_setup call lsp#register_server({
     \ })
 
 nnoremap <S-F12> :Cargo run<CR>
-
-let g:rustfmt_autosave = 1
-
-elseif uselang == 'go'
-
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-
-let g:go_template_use_pkg = 1
-let g:go_fmt_command = "goimports"
-let g:go_bin_path = expand("~/src/go/bin")
-let g:go_fmt_fail_silently = 1
-let g:go_get_update = 0
-
-let g:ycm_global_ycm_extra_conf = '~/.vim/ycm/.ycm_extra_conf.py'
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_cache_omnifunc = 1
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
-let g:ycm_key_invoke_completion = '<C-\>'
-let g:ycm_semantic_triggers = {}
-let g:ycm_semantic_triggers.c = ['->', '.', ' ', '(', '[', '&']
-let g:ycm_semantic_triggers.cpp = ['->', '.', '(', '[', '&']
-
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-
-nnoremap <F2> :GoRename<CR>
-imap <C-K><C-D> ·
-
-endif
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
